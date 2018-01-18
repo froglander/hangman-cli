@@ -25,16 +25,18 @@ const Letter = require("./letter");
  * We want to be able to display that word as a bunch of Letters, so maybe if 
  * we had an array of Letter objects to store the letters of the word?
  * Then we could update a particular index based on if that letter was guessed or not?
-  */
+ */
 
-  const Word = function(targetWord) {
-      // This is the word passed in turned into an array
-      this.wordObjLetterArray = targetWord.split("").map((letter) => { return new Letter(letter)});
-      // This is now an array of Letter objects
+const Word = function (targetWord) {
+    // This is the word passed in turned into an array
+    this.wordObjLetterArray = targetWord.split("").map((letter) => {
+        return new Letter(letter)
+    });
+    // This is now an array of Letter objects
     //   this.wordObjLetterArray = this.createWordLetterArray();
-  }
+}
 
-  
+
 //   Word.prototype.createWordLetterArray = function() {    
 //       // Here we use map to create a new array of Letter objects
 //       const myWordLetterArray = this.targetWordArray.map((letter) => {
@@ -45,7 +47,7 @@ const Letter = require("./letter");
 //       return myWordLetterArray;
 //   }
 
-  Word.prototype.displayWord = function() {
+Word.prototype.displayWord = function () {
     // console.log("Display current word with placeholders here");
     // So at this point, I need to display the current status of the word, with letters and placeholders
 
@@ -57,9 +59,9 @@ const Letter = require("./letter");
         myDisplayWord += element.getDisplayCharacter();
     });
     console.log(myDisplayWord);
-  }
+}
 
-  Word.prototype.displayAnswerWord = function() {
+Word.prototype.displayAnswerWord = function () {
     // console.log("Display current word here");
     // So at this point, I need to display the current status of the word, with letters and placeholders
 
@@ -71,20 +73,20 @@ const Letter = require("./letter");
         myDisplayWord += element.getCharacter();
     });
     console.log(myDisplayWord);
-  }
+}
 
-  Word.prototype.checkLetter = function(guessedLetter) {
+Word.prototype.checkLetter = function (guessedLetter) {
     //   console.log("guessedLetter:", this.wordObjLetterArray.indexOf(guessedLetter));
-      // Index of won't work because it's an array of objects, so maybe we just loop through it each time?
-      this.wordObjLetterArray.forEach((character) => {
-        if(character.getCharacter() === guessedLetter) {
+    // Index of won't work because it's an array of objects, so maybe we just loop through it each time?
+    this.wordObjLetterArray.forEach((character) => {
+        if (character.getCharacter() === guessedLetter) {
             character.guessed = true;
             // console.log("match", i.getCharacter());
-        // } else {
+            // } else {
             // console.log("doesn't match");
-        }        
-      });
-      this.displayWord();
-  }
+        }
+    });
+    this.displayWord();
+}
 
-  module.exports = Word;
+module.exports = Word;
